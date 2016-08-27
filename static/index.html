@@ -15,50 +15,63 @@
     <script src="app/controllers/MainCtrl.js"></script>
     <script src="app/directivas/MyTimetable.directive.js"></script>
     <script src="app/directivas/keyEnter.directive.js"></script>
+    <script src="app/directivas/GenTimetable.directive.js"></script>
 
-    <!-- <script src="directivas/GenTimetable.directive.js"></script> -->
   </head>
   <body>
     <div data-ng-app="myApp">
       <div ng-controller="MainCtrl as ctrl">
         <h1>Dofitario v0.1</></h1>
-        <h2>Seleccion personal</h2>
+        <h2>Control panel</h2>
         <div data-my-timetable data-slots="ctrl.slots"></div>
         <br>
-        <table>
+        <table align='center'>
           <tr>
             <td>
-              <!-- <button ng-click="ctrl.loadTable(ctrl.user)" ng-init="count=0">
-                get!
-              </button> -->
               <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)" ng-init="count=0">
-                Salva calendario!
+                SAVE!!
               </button>
-              <button ng-click="ctrl.loadGenTable()" ng-init="count=0">
+
+              <!-- <button ng-click="ctrl.loadGenTable()" ng-init="count=0">
                 GET GEN!!
-              </button>
+              </button> -->
+              </td>
+
+              <td>-----</td>
+
+            <td>
+              <div>
+                  New User:
+                  <input id="textfield1" type="text" ng-enter="ctrl.saveTable(ctrl.newUser)" ng-model="ctrl.newUser">
+              </div>
+
             </td>
+
+            <td> ----- </td>
             <td>
               <form name="myForm">
-                <label for="repeatSelect"> Selecciona Mojón </label>
+                <label for="repeatSelect"> User: </label>
                 <select name="repeatSelect" id="repeatSelect" ng-model="ctrl.user">
                   <option ng-repeat="option in ctrl.userList" value="{{option}}"  ng-click="ctrl.loadTable(ctrl.user)">{{option}}</option>
                 </select>
               </form>
+
             </td>
             <td>
-              <div>
-                  Añade nick nuevo:
-                  <input id="textfield1" type="text" ng-enter="ctrl.saveTable(ctrl.newUser)" ng-model="ctrl.newUser">
-              </div>
-            </td>
-            <td>
-              Drop Down Aquí: https://www.codementor.io/angularjs/tutorial/create-dropdown-control
-            </td>
+              <button ng-click="ctrl.deleteUser(ctrl.user)" ng-init="count=0">
+                Delete
+              </button>
+
+          </td>
           </tr>
         </table>
-        <br>
-        <h2> {{slots}} </h2>
+        <!-- <br>
+        <h2> {{ctrl.slots}} </h2> -->
+
+        <h2>Output Panel</h2>
+        <div data-gen-timetable data-slots="ctrl.slots2"></div>
+
+        <h5> Marcial Rodríguez - uborzz@gmail.com </h5>
 
         <!-- <div data-gen-timetable="" data-slots="slots"></div> -->
       </div>

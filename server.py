@@ -11,7 +11,7 @@ app = Flask(__name__, static_url_path='')
 def root():
     return app.send_static_file('index.html')
 
-@app.route('/api/users/<user>/week', methods = ['GET','PUT'])
+@app.route('/api/users/<user>/week', methods = ['GET','PUT', 'DELETE'])
 def api_userWeek(user):
     if request.method == 'GET':
         counter = 0
@@ -24,7 +24,7 @@ def api_userWeek(user):
             return json.dumps({"response":"Error", "desc": "User not registered"})
         else:
             return json.dumps({"response":"OK", "week": result})
-    else:
+    elif request.method == 'PUT':
         week = json.loads(request.data)['week']
         print week, type(week)
         counter = 0
@@ -51,6 +51,9 @@ def api_userWeek(user):
                 "week":week}
             )
             return json.dumps({"response":"OK", "desc": "New user registered"})
+    else:
+        db.tIndividualWeeklyTimetable.delete_one({"nick":user})
+        return json.dumps({"response":"OK", "desc": "Element deleted"})
 
 @app.route('/api/general/week')
 def api_genWeek():
@@ -120,4 +123,4 @@ def api_echo():
 
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    a= app.run(port = 8080)

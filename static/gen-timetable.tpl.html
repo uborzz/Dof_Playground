@@ -1,0 +1,18 @@
+<table class="gen-timetable">
+  <colgroup>
+    <col span="1" width="9%">
+    <col data-ng-repeat="i in loop(0, 8, 1)" span="1" width="13%">
+  </colgroup>
+  <thead>
+    <th></th>
+    <th data-ng-repeat="day in days" data-ng-click="">{{day}}</th>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="i in loop(0, 15, 1)">
+      <th data-ng-click="">{{greaterThan(i) + ':00'}}</th>
+      <td align=center data-ng-repeat="j in loop(0, 6, 1)"
+
+      data-ng-class="getColor(slots[j][i])">{{ slots[j][i] ? slots[j][i] : '' }}</td>
+    </tr>
+  </tbody>
+</table>

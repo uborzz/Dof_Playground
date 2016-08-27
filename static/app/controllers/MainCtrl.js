@@ -15,6 +15,7 @@ angular.module('myApp')
   function _init() {
     ctrl.slots = _slots;
     ctrl.generateUserList()
+    ctrl.loadGenTable()
   }
 
   // ctrl.user = "Henry";
@@ -45,6 +46,21 @@ angular.module('myApp')
     });
   };
 
+  ctrl.deleteUser = function(user){
+    console.log(ApiFactory)
+    ApiFactory.deleteOne(user).then(function(data){
+      if(data.data.response === "Error"){
+
+      }
+      else{
+        console.log(data)
+        ctrl.generateUserList()
+        //ctrl.user = ''
+      }
+    });
+  };
+
+
   ctrl.saveTable = function(user, slots){
     slots = slots || _slots
     console.log(ApiFactory)
@@ -54,7 +70,9 @@ angular.module('myApp')
       }
       else{
         console.log(data)
-        // ctrl.loadGenTable()
+        ctrl.newUser = ''
+        ctrl.generateUserList()
+        ctrl.loadGenTable()
       }
     });
   };
@@ -67,7 +85,7 @@ angular.module('myApp')
       }
       else{
         console.log(data)
-        // ctrl.slots2 = data.data.week;
+        ctrl.slots2 = data.data.week;
       }
     });
   };

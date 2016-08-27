@@ -5,17 +5,24 @@ html {
 
 h1 {
   width: 100%;
-  margin-bottom: 3;
   color: #003333;
   text-align: center;
 
 }
 
-h2 {
-  margin-top: 0;
+h5 {
+  border-top: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
-  font-size: 0.9em;
-  color: #808080;
+  width: 100%;
+  color: #003333;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+  font-size: 1.0em;
+  color: #003333;
 }
 
 .my-timetable{
@@ -50,4 +57,57 @@ h2 {
 
 .my-timetable .selected {
   background: #2cab54;
+}
+
+.gen-timetable{
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  background: #fff;
+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.gen-timetable th {
+  font-size: 0.8em;
+  color: #808080;
+  cursor: pointer;
+}
+
+.gen-timetable td {
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.gen-timetable .selected {
+  background: #2cab54;
+}
+
+.gen-timetable .range1{
+  background: #b3ffb3;
+}
+
+.gen-timetable .range2{
+  background: #80ff80;
+}
+
+
+.gen-timetable .range3{
+  background: #00ff55;
+}
+
+
+.gen-timetable .range4{
+  background: #00cc44;
+}
+
+
+.gen-timetable .range5{
+  background: #009933;
 }
