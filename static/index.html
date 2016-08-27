@@ -14,6 +14,7 @@
     <script src="app/services/Api.service.js"></script>
     <script src="app/controllers/MainCtrl.js"></script>
     <script src="app/directivas/MyTimetable.directive.js"></script>
+    <script src="app/directivas/keyEnter.directive.js"></script>
 
     <!-- <script src="directivas/GenTimetable.directive.js"></script> -->
   </head>
@@ -27,15 +28,29 @@
         <table>
           <tr>
             <td>
-              <button ng-click="ctrl.loadTable(ctrl.user)" ng-init="count=0">
+              <!-- <button ng-click="ctrl.loadTable(ctrl.user)" ng-init="count=0">
                 get!
-              </button>
+              </button> -->
               <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)" ng-init="count=0">
-                PUT!
+                Salva calendario!
               </button>
               <button ng-click="ctrl.loadGenTable()" ng-init="count=0">
                 GET GEN!!
               </button>
+            </td>
+            <td>
+              <form name="myForm">
+                <label for="repeatSelect"> Selecciona Mojón </label>
+                <select name="repeatSelect" id="repeatSelect" ng-model="ctrl.user">
+                  <option ng-repeat="option in ctrl.userList" value="{{option}}"  ng-click="ctrl.loadTable(ctrl.user)">{{option}}</option>
+                </select>
+              </form>
+            </td>
+            <td>
+              <div>
+                  Añade nick nuevo:
+                  <input id="textfield1" type="text" ng-enter="ctrl.saveTable(ctrl.newUser)" ng-model="ctrl.newUser">
+              </div>
             </td>
             <td>
               Drop Down Aquí: https://www.codementor.io/angularjs/tutorial/create-dropdown-control

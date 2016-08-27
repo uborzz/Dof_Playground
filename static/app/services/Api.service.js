@@ -8,6 +8,10 @@ angular.module('myApp')
     return $http.get('http://localhost:8080/api/general/week');
   }
 
+  function getUserList(){
+    return $http.get('http://localhost:8080/api/general/userlist');
+  }
+
   function putTimetable(user_id, data){
     return $http.put('http://localhost:8080/api/users/' + user_id + '/week', {nick:user_id, week:data});
   }
@@ -15,7 +19,8 @@ angular.module('myApp')
   return  {
     getTimetable : getTimetable,
     getGenTimetable : getGenTimetable,
-    putTimetable : putTimetable
+    putTimetable : putTimetable,
+    getUserList : getUserList
   };
 
 }]);

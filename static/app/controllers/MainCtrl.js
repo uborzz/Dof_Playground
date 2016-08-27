@@ -14,9 +14,23 @@ angular.module('myApp')
 
   function _init() {
     ctrl.slots = _slots;
+    ctrl.generateUserList()
   }
 
-  ctrl.user = "Henrys";
+  // ctrl.user = "Henry";
+
+  ctrl.generateUserList = function(){
+    console.log('Generando lista')
+    ApiFactory.getUserList().then(function(data){
+      if(data.data.response === "Error"){
+
+      }
+      else {
+        console.log(data)
+        ctrl.userList = data.data.users
+      }
+    });
+  };
 
   ctrl.loadTable = function(user){
     console.log(ApiFactory)
@@ -32,6 +46,7 @@ angular.module('myApp')
   };
 
   ctrl.saveTable = function(user, slots){
+    slots = slots || _slots
     console.log(ApiFactory)
     ApiFactory.putTimetable(user, slots).then(function(data){
       if(data.data.response === "Error"){
