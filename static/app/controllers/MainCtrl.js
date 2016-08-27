@@ -16,7 +16,7 @@ angular.module('myApp')
     ctrl.slots = _slots;
   }
 
-  ctrl.user = "Rady";
+  ctrl.user = "Henrys";
 
   ctrl.loadTable = function(user){
     console.log(ApiFactory)

@@ -32,6 +32,7 @@ def api_userWeek(user):
         for doc in cursor:
             counter = counter+1
             result = doc['week']
+        print "MANTECA"
         # db.tIndividualWeeklyTimetable.insert_one({"nick":user)
         if counter == 1:
             db.tIndividualWeeklyTimetable.update_one(
@@ -44,50 +45,51 @@ def api_userWeek(user):
             )
             return json.dumps({"response":"OK", "desc": "User week updated"})
         else:
-            db.tIndividualWeeklyTimetable.put_one(
-                {"nick":user},
-                {"week": json.loads(request.data)}
+            print week, type(week)
+            db.tIndividualWeeklyTimetable.insert_one(
+                {"nick":user,
+                "week":week}
             )
             return json.dumps({"response":"OK", "desc": "New user registered"})
 
-@app.route('/api/general/week', methods = ['GET'])
-def api_genWeek():
-    if request.method == 'GET':
-
-        counter = 0
-        cursor = db.tIndividualWeeklyTimetable.find()
-        for line in cursor:
-            counter = counter + 1
-            if counter == 1:
-                aux = numpy.array(line['week'])
-            else:
-                aux + numpy.array(line['week'])
-
-        c = numpy.ndarray.tolist(a + b)
-
-        if counter == 0:
-            return json.dumps({"response":"Error", "desc": "User not registered"})
-        else:
-            return json.dumps({"response":"OK", "week": result})
-    else:
-        return json.dumps({"response":"Error", "desc": "Method not supported"})
-
-
-@app.route('/articles')
+@app.route('/hello')
 def api_articles():
-    return 'List of ' + url_for('api_articles')
+    print "POLLA"
+    counter = 0
+    cursor = db.tIndividualWeeklyTimetable.find()
+    # for line in cursor:
+    #     print line['week']
+    #     counter = counter + 1
+    #     if counter == 1:
+    #         aux = numpy.array(line['week'])
+    #     else:
+    #         aux = aux + numpy.array(line['week'])
+    #
+    # print aux
+    # c = numpy.ndarray.tolist(a + b)
+    # print c
+
+    if counter == 0:
+        return json.dumps({"response":"Error", "desc": "User not registered"})
+    # else:
+    #     return json.dumps({"response":"OK", "week": result})
+
+
+# @app.route('/articles')
+# def api_articles():
+#     return 'List of ' + url_for('api_articles')
 
 
 @app.route('/articles/<articleid>')
 def api_article(articleid):
     return 'You are reading ' + articleid
 
-@app.route('/hello')
-def api_hello():
-    if 'name' in request.args:
-        return 'Hello ' + request.args['name']
-    else:
-        return 'Hello John Doe'
+# @app.route('/hello')
+# def api_hello():
+#     if 'name' in request.args:
+#         return 'Hello ' + request.args['name']
+#     else:
+#         return 'Hello John Doe'
 
 @app.route('/echo', methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
 def api_echo():

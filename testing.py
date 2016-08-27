@@ -7,17 +7,17 @@ db = client.dofidb
 app = Flask(__name__)
 
 a = 0
-cursor = db.tIndividualWeeklyTimetable.find({"nick":"Nimro"})
-for doc in cursor:
-    a = a+1
-print a
-
-
-
-cursor = db.tIndividualWeeklyTimetable.update_one(
-    {"nick":"Niao"},
-        {"$set": {
-            "data":"dataaaa"
-        },
-    }
-)
+db.tIndividualWeeklyTimetable.drop()
+# for doc in cursor:
+#     a = a+1
+# print a
+#
+#
+#
+# cursor = db.tIndividualWeeklyTimetable.update_one(
+#     {"nick":"Niao"},
+#         {"$set": {
+#             "data":"dataaaa"
+#         },
+#     }
+# )
