@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <script data-require="angular.js@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular.js"></script>
+    <script data-require="angular-route@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-route.js"></script>
+    <script data-require="angular-touch@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-touch.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app/script.js"></script>
+    <script src="app/services/Api.service.js"></script>
+    <script src="app/controllers/MainCtrl.js"></script>
+    <script src="app/directivas/MyTimetable.directive.js"></script>
+
+    <!-- <script src="directivas/GenTimetable.directive.js"></script> -->
+  </head>
+  <body>
+    <div data-ng-app="myApp">
+      <div ng-controller="MainCtrl as ctrl">
+        <h1>Dofitario v0.1</></h1>
+        <h2>Seleccion personal</h2>
+        <div data-my-timetable data-slots="ctrl.slots"></div>
+        <br>
+        <table>
+          <tr>
+            <td>
+              <button ng-click="ctrl.loadTable(ctrl.user)" ng-init="count=0">
+                get!
+              </button>
+              <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)" ng-init="count=0">
+                PUT!
+              </button>
+              <button ng-click="ctrl.saveTable()" ng-init="count=0">
+                GET GEN!!
+              </button>
+            </td>
+            <td>
+              Drop Down Aquí: https://www.codementor.io/angularjs/tutorial/create-dropdown-control
+            </td>
+          </tr>
+        </table>
+        <br>
+        <h2> {{slots}} </h2>
+
+        <!-- <div data-gen-timetable="" data-slots="slots"></div> -->
+      </div>
+    </div>
+  </body>
+
+</html>
