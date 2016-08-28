@@ -55,5 +55,6 @@ testing.py
 testLogics.py
 testsend.json
 .idea/
+tests/
 node_modules/
 mongoData/
