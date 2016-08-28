@@ -34,7 +34,8 @@ angular.module('myApp')
   };
 
   ctrl.loadTable = function(user){
-    console.log(ApiFactory)
+    // console.log(ApiFactory)
+    console.log(user)
     ApiFactory.getTimetable(user).then(function(data){
       if(data.data.response === "Error"){
 
@@ -55,7 +56,8 @@ angular.module('myApp')
       else{
         console.log(data)
         ctrl.generateUserList()
-        //ctrl.user = ''
+        ctrl.loadGenTable()
+        ctrl.user = ''
       }
     });
   };
