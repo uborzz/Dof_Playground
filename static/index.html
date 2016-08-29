@@ -32,13 +32,7 @@
 
                   <!-- <tr><td height = '5%'>  <h2>Control panel</h2></td></tr> -->
 
-                  <tr><td>
-                    <div align="center">
-                      <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)">
-                        SAVE!!
-                      </button>
-                    </div>
-                  </td></tr>
+
 
                   <tr>
                     <td>
@@ -66,6 +60,15 @@
                       <input id="textfield1" type="text" ng-enter="ctrl.saveTable(ctrl.newUser)" ng-model="ctrl.newUser">
                     </td></tr>
 
+                    <tr><td>
+                      <div align="center">
+                        <button ng-click="ctrl.saveTable(ctrl.newUser)">
+                          Create New User
+                        </button>
+                      </div>
+                    </td></tr>
+
+
                     <tr height="30%"><td height="30%">
                                             <h1> As {{ctrl.user ? ctrl.user : "No One"}}...  </h1>
                     </td></tr>
@@ -83,8 +86,25 @@
 
         <table align='center' width='85%'>
           <tr>
-            <td>
+            <td width="30%">
               <h2>Output Panel</h2>
+            </td>
+            <td>
+              <div align="center">
+                <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)">
+                  Save Table
+                </button>
+
+                <button ng-click="ctrl.resetTable(ctrl.user)">
+                Reset Table
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table align='center' width='85%'>
+          <tr>
+            <td>
               <div data-gen-timetable data-slots="ctrl.slots2"></div>
             </td>
           </tr>
