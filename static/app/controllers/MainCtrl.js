@@ -79,6 +79,23 @@ angular.module('myApp')
     });
   };
 
+
+  ctrl.resetTable = function(user){
+    slots = slots || _slots
+    console.log(ApiFactory)
+    ApiFactory.putTimetable(user, slots).then(function(data){
+      if(data.data.response === "Error"){
+
+      }
+      else{
+        console.log(data)
+        ctrl.newUser = ''
+        ctrl.slots = _slots
+        ctrl.loadGenTable()
+      }
+    });
+  };
+
   ctrl.loadGenTable = function(){
     console.log(ApiFactory)
     ApiFactory.getGenTimetable().then(function(data){
