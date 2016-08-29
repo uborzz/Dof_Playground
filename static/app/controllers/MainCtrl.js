@@ -81,9 +81,8 @@ angular.module('myApp')
 
 
   ctrl.resetTable = function(user){
-    slots = slots || _slots
     console.log(ApiFactory)
-    ApiFactory.putTimetable(user, slots).then(function(data){
+    ApiFactory.putTimetable(user, _slots).then(function(data){
       if(data.data.response === "Error"){
 
       }
@@ -91,6 +90,7 @@ angular.module('myApp')
         console.log(data)
         ctrl.newUser = ''
         ctrl.slots = _slots
+        ctrl.loadTable(user)
         ctrl.loadGenTable()
       }
     });
