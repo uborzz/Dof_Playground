@@ -1,5 +1,5 @@
 angular.module('myApp')
-  .controller('MainCtrl', ['$scope', '$http', 'ApiFactory', function ($scope, $http, ApiFactory) {
+  .controller('MainCtrl', ['$scope', '$http', 'ApiFactory', '$state', function ($scope, $http, ApiFactory, $state) {
     var ctrl = this;
     var _slots = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
