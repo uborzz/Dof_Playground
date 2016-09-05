@@ -1,119 +1,59 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-    <script data-require="angular.js@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular.js"></script>
-    <script data-require="angular-route@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-route.js"></script>
-    <script data-require="angular-touch@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-touch.js"></script>
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="node_modules/angular-resource/angular-resource.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="app/script.js"></script>
-    <script src="app/services/Api.service.js"></script>
-    <script src="app/controllers/MainCtrl.js"></script>
-    <script src="app/directivas/MyTimetable.directive.js"></script>
-    <script src="app/directivas/keyEnter.directive.js"></script>
-    <script src="app/directivas/GenTimetable.directive.js"></script>
-
-  </head>
-  <body>
-    <div data-ng-app="myApp">
-      <div ng-controller="MainCtrl as ctrl">
-        <br>
-        <table align='center' width='85%'>
-          <tr>
-            <td width="30%">
-              <div align="center" >
-                <table width="90%" align='center' id="panel">
-
-                  <tr height="30%"><td height="30%" > <h1>Dofitario v0.3</></h1></td></tr>
-
-                  <!-- <tr><td height = '5%'>  <h2>Control panel</h2></td></tr> -->
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script data-require="angular.js@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular.js"></script>
+  <script data-require="angular-route@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-route.js"></script>
+  <script data-require="angular-touch@*" data-semver="1.2.12" src="http://code.angularjs.org/1.2.12/angular-touch.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-resource/angular-resource.js"></script>
+  <link rel="stylesheet" href="style.css" />
 
-                  <tr>
-                    <td>
-                      <table align="center"><tr><td>
-                        <form name="myForm">
-                          <label for="repeatSelect"> User: </label>
-                          <select name="repeatSelect" id="repeatSelect" ng-model="ctrl.user">
-                            <option ng-repeat="option in ctrl.userList" value="{{option}}" ng-click="ctrl.loadTable(ctrl.user)">{{option}}</option>
-                          </select>
-                        </form>
-                          </td>
-                          <td>
-                            <button ng-click="ctrl.deleteUser(ctrl.user)">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
+  <script src="app/script.js"></script>
+  <script src="app/services/Api.service.js"></script>
+  <script src="app/controllers/MainCtrl.js"></script>
+  <script src="app/directivas/MyTimetable.directive.js"></script>
+  <script src="app/directivas/keyEnter.directive.js"></script>
+  <script src="app/directivas/GenTimetable.directive.js"></script>
 
-                        </table>
-                      </td>
-                    </tr>
+</head>
+<body data-ng-app="myApp">
 
-                    <tr><td align="center">
-                    New User:
-                      <input id="textfield1" type="text" ng-enter="ctrl.saveTable(ctrl.newUser)" ng-model="ctrl.newUser">
-                    </td></tr>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
 
-                    <tr><td>
-                      <div align="center">
-                        <button ng-click="ctrl.saveTable(ctrl.newUser)">
-                          Create New User
-                        </button>
-                      </div>
-                    </td></tr>
-
-
-                    <tr height="30%"><td height="30%">
-                                            <h1> As {{ctrl.user ? ctrl.user : "No One"}}...  </h1>
-                    </td></tr>
-                  </td>
-                  </tr>
-                  </table>
-
-              </div>
-            </td>
-            <td>
-                <div data-my-timetable data-slots="ctrl.slots"></div>
-            </td>
-          </tr>
-        </table>
-
-        <table align='center' width='85%'>
-          <tr>
-            <td width="30%">
-              <h2>Output Panel</h2>
-            </td>
-            <td>
-              <div align="center">
-                <button ng-click="ctrl.saveTable(ctrl.user, ctrl.slots)">
-                  Save Table
-                </button>
-
-                <button ng-click="ctrl.resetTable(ctrl.user)">
-                Reset Table
-                </button>
-              </div>
-            </td>
-          </tr>
-        </table>
-        <table align='center' width='85%'>
-          <tr>
-            <td>
-              <div data-gen-timetable data-slots="ctrl.slots2"></div>
-            </td>
-          </tr>
-        </table>
-        <h5 width= "85%" color="#2cab54"> Marcial Rodríguez - uborzz@gmail.com </h5>
-
-        <!-- <div data-gen-timetable="" data-slots="slots"></div> -->
-      </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> Dofitos Bastardos </a>
     </div>
-  </body>
+    <ul class="nav navbar-nav">
+      <li><a href="#/app/roster">Roster</a></li>
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">Wow
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/#/app/clases">Clases</a></li>
+          <li><a href="/#/app/dofitario">Dofitario</a></li>
+          <li><a href="#/app/recursos">Recursos</a></li>
+        </ul>
+      </li>
+      <li><a href="#/app/todo">To-do</a></li>
+      <li><a href="#/app/info">Info</a></li>
+    </ul>
+  </div>
+</nav>
 
+<h3>marcial</h3>
+<div class="container" ui-view></div>
+
+</body>
 </html>
