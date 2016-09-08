@@ -14,7 +14,7 @@ do
 		then
 			trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
 			echo "Launching..."
-				python /home/ubuntu/dofitario/Dofitario/server.py
+				sudo python /home/ubuntu/dofitario/Dofitario/server.py
 
 		rm -f "$lockfile"
 		trap - INT TERM EXIT

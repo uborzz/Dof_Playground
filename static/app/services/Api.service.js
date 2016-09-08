@@ -1,7 +1,7 @@
 angular.module('myApp')
 .factory('ApiFactory', ['$http', function($http){
 
-  var url='http://212.231.130.119:8080/';
+  var url='http://www.dofitos.tk/';
 
   function getTimetable(user_id){
     return $http.get(url + 'api/users/' + user_id + '/week');

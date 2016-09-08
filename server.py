@@ -1,14 +1,14 @@
 from flask import Flask, url_for, request, json
 from pymongo import MongoClient
 import numpy
-# from flask.ext.cors import CORS
+from flask.ext.cors import CORS
 
 
 client = MongoClient()
 db = client.dofidb
 
 app = Flask(__name__, static_url_path='')
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def root():
@@ -126,4 +126,4 @@ def api_echo():
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0', port = 8080)
+    app.run(host= '0.0.0.0', port='80')
