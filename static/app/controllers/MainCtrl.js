@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('dofitarioApp')
   .controller('MainCtrl', ['$scope', '$http', 'ApiFactory', '$state', function ($scope, $http, ApiFactory, $state) {
     var ctrl = this;
     var _slots = [

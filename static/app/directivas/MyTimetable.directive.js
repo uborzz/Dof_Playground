@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('dofitarioApp')
     .directive('myTimetable', function () {
     return {
       restrict: 'A',

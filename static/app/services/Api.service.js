@@ -1,7 +1,7 @@
-angular.module('myApp')
+angular.module('dofitarioApp')
 .factory('ApiFactory', ['$http', function($http){
 
-  var url='http://localhost:9999/';
+  var url='http://0.0.0.0:9999/';
 
   function getTimetable(user_id){
     return $http.get(url + 'api/users/' + user_id + '/week');
