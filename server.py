@@ -12,4 +12,4 @@ flaskapi.add_resource(generalweek.GeneralWeek, '/api/general/week')
 flaskapi.add_resource(users.Users, '/api/general/userlist')
 
 if __name__ == '__main__':
-    flaskapp.run(host= '0.0.0.0', port=9999)
+    flaskapp.run(host= '0.0.0.0', port=80)
