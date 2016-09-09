@@ -1,14 +1,15 @@
 from flask import Flask, url_for, request, json
-from pymongo import MongoClient
+from flask_pymongo import PyMongo
 import numpy
-from flask.ext.cors import CORS
+from flask_cors import CORS
 
-
-client = MongoClient()
-db = client.dofidb
 
 app = Flask(__name__, static_url_path='')
+app.config.from_object('config') #here I load the parameters in config.py
+
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+mongo = PyMongo(app)
+
 
 @app.route('/')
 def root():
@@ -18,7 +19,7 @@ def root():
 def api_userWeek(user):
     if request.method == 'GET':
         counter = 0
-        cursor = db.tIndividualWeeklyTimetable.find({"nick":user})
+        cursor = mongo.db.tIndividualWeeklyTimetable.find({"nick":user})
         for doc in cursor:
             counter = counter+1
             result = doc['week']
@@ -31,14 +32,14 @@ def api_userWeek(user):
         week = json.loads(request.data)['week']
         print week, type(week)
         counter = 0
-        cursor = db.tIndividualWeeklyTimetable.find({"nick":user})
+        cursor = mongo.db.tIndividualWeeklyTimetable.find({"nick":user})
         for doc in cursor:
             counter = counter+1
             result = doc['week']
         print "MANTECA"
-        # db.tIndividualWeeklyTimetable.insert_one({"nick":user)
+        # mongo.db.tIndividualWeeklyTimetable.insert_one({"nick":user)
         if counter == 1:
-            db.tIndividualWeeklyTimetable.update_one(
+            mongo.db.tIndividualWeeklyTimetable.update_one(
                 {"nick":user},
                 {
                     "$set": {
@@ -49,20 +50,20 @@ def api_userWeek(user):
             return json.dumps({"response":"OK", "desc": "User week updated"})
         else:
             print week, type(week)
-            db.tIndividualWeeklyTimetable.insert_one(
+            mongo.db.tIndividualWeeklyTimetable.insert_one(
                 {"nick":user,
                 "week":week}
             )
             return json.dumps({"response":"OK", "desc": "New user registered"})
     else:
-        db.tIndividualWeeklyTimetable.delete_one({"nick":user})
+        mongo.db.tIndividualWeeklyTimetable.delete_one({"nick":user})
         return json.dumps({"response":"OK", "desc": "Element deleted"})
 
 @app.route('/api/general/week')
 def api_genWeek():
     print "POLLA"
     counter = 0
-    cursor = db.tIndividualWeeklyTimetable.find()
+    cursor = mongo.db.tIndividualWeeklyTimetable.find()
     for line in cursor:
         print line['week']
         counter = counter + 1
@@ -86,7 +87,7 @@ def api_genUserList():
     print "POLLA"
     counter = 0
     userList = list()
-    cursor = db.tIndividualWeeklyTimetable.find()
+    cursor = mongo.db.tIndividualWeeklyTimetable.find()
     for line in cursor:
         userList.append(line['nick'])
     return json.dumps({"users": userList})

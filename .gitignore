@@ -59,3 +59,5 @@ tests/
 mongoData/
 node_modules/
 mongoData/
+npm-debug.log
+*.pyc
