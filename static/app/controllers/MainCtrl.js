@@ -13,52 +13,51 @@ angular.module('dofitarioApp')
 
 
   function _init() {
+    ctrl.userList = [];
     ctrl.slots = _slots;
-    ctrl.generateUserList()
-    ctrl.loadGenTable()
+    ctrl.slots2 = _slots;
+    ctrl.user = '';
+    ctrl.newUser = '';
+    ctrl.generateUserList();
+    ctrl.loadGenTable();
   }
 
   // ctrl.user = "Henry";
 
-  ctrl.generateUserList = function(){
+  ctrl.generateUserList = function(current_user){
     console.log('Generando lista')
-    ApiFactory.getUserList().then(function(data){
-      if(data.data.response === "Error"){
-
+    ApiFactory.getUserList()
+    .then(function(data){
+      ctrl.userList = data.data.users
+      ctrl.user = current_user? current_user: ctrl.userList[0]
+      if(ctrl.user){ /// if we have on user selected then load the table
+        ctrl.loadTable(ctrl.user)
       }
-      else {
-        console.log(data)
-        ctrl.userList = data.data.users
-      }
+      else{
+        ctrl.slots = _slots
+      }      
     });
   };
 
   ctrl.loadTable = function(user){
-    // console.log(ApiFactory)
-    console.log(user)
-    ApiFactory.getTimetable(user).then(function(data){
-      if(data.data.response === "Error"){
+    ApiFactory.getTimetable(user)
+    .then(function(data){
+      ctrl.slots = data.data.week;
+    })
+    .catch(function(data){
 
-      }
-      else{
-        console.log(data)
-        ctrl.slots = data.data.week;
-      }
     });
   };
 
   ctrl.deleteUser = function(user){
-    console.log(ApiFactory)
-    ApiFactory.deleteOne(user).then(function(data){
-      if(data.data.response === "Error"){
-
-      }
-      else{
-        console.log(data)
+    ApiFactory.deleteOne(user)
+    .then(function(data){
         ctrl.generateUserList()
         ctrl.loadGenTable()
-        ctrl.user = ''
-      }
+        ctrl.user = ctrl.userList[0]
+    })
+    .catch(function(data){
+
     });
   };
 
@@ -69,7 +68,7 @@ angular.module('dofitarioApp')
     .then(function(data){
         console.log(data)
         ctrl.newUser = ''
-        ctrl.generateUserList()
+        ctrl.generateUserList(ctrl.user)
         ctrl.loadGenTable()
     })
     .catch(function(data){
@@ -81,9 +80,10 @@ angular.module('dofitarioApp')
   ctrl.createUser = function(){
     ApiFactory.createNewUser(ctrl.newUser)
     .then(function(data){
-      console.log(data)
+      var values = data.data;
       ctrl.newUser = ''
-      ctrl.generateUserList()
+      ctrl.loadTable(values.nick)
+      ctrl.generateUserList(values.nick)
       ctrl.loadGenTable()
     })
     .catch(function(data){
@@ -94,29 +94,26 @@ angular.module('dofitarioApp')
 
 
   ctrl.resetTable = function(user){
-    console.log(ApiFactory)
-    ApiFactory.putTimetable(user, _slots).then(function(data){
-      if(data.data.response === "Error"){
-
-      }
-      else{
-        console.log(data)
+    ApiFactory.putTimetable(user, _slots)
+    .then(function(data){
+        ctrl.slots = data.data.week
         ctrl.newUser = ''
-        ctrl.slots = _slots
-        ctrl.loadTable(user)
+        ctrl.generateUserList(ctrl.user)
         ctrl.loadGenTable()
-      }
+    })
+    .catch(function(data){
+      alert(data.data.message)
     });
   };
 
   ctrl.loadGenTable = function(){
     console.log(ApiFactory)
-    ApiFactory.getGenTimetable().then(function(data){
-      console.log(data)
+    ApiFactory.getGenTimetable()
+    .then(function(data){
       ctrl.slots2 = data.data.week;
     })
     .catch(function(data){
-      alert(data.data.message)
+      console.log(data.data.message)
       ctrl.slots2 = _slots
     });
   };
