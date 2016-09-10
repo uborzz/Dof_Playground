@@ -39,4 +39,4 @@ class GeneralWeek(Resource):
         if counter == 0:
             return make_error(404, "No results o_O, check DB!!!")
         else:
-            return jsonify({"week": result})
+            return {"week": result}

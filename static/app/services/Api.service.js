@@ -8,7 +8,7 @@ angular.module('dofitarioApp')
   }
 
   function deleteOne(user_id){
-    return $http.delete(url +'api/users/' + user_id + '/week');
+    return $http.delete(url +'api/users/' + user_id);
   }
 
   function getGenTimetable(){
