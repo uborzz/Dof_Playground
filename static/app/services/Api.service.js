@@ -16,7 +16,12 @@ angular.module('dofitarioApp')
   }
 
   function getUserList(){
-    return $http.get(url + 'api/general/userlist');
+    return $http.get(url + 'api/users');
+  }
+
+  function createNewUser(user_name){
+    console.log(user_name)
+    return $http.post(url + 'api/users', { nick : user_name});
   }
 
   function putTimetable(user_id, data){
@@ -28,7 +33,8 @@ angular.module('dofitarioApp')
     getGenTimetable : getGenTimetable,
     putTimetable : putTimetable,
     getUserList : getUserList,
-    deleteOne : deleteOne
+    deleteOne : deleteOne,
+    createNewUser :createNewUser
   };
 
 }]);

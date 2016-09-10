@@ -8,11 +8,17 @@ from flask_restful import Resource
 from flask import jsonify
 from flask import request
 from flask import abort
-
-
-
-
 logger_ = logging.getLogger(__name__)
+
+
+def make_error(status_code, message):
+    response = jsonify({
+        'status': status_code,
+        'message': message
+    })
+    response.status_code = status_code
+    return response
+
 
 
 class GeneralWeek(Resource):
@@ -21,25 +27,16 @@ class GeneralWeek(Resource):
     #     if session is None:
     #         session = db.get_session()
     #     self._session = session
-
-
     def get(self):
-        print "POLLA"
+        aux = numpy.asarray([[0] * 16] * 7)
         counter = 0
         cursor = flaskmongo.db.tIndividualWeeklyTimetable.find()
         for line in cursor:
-            print line['week']
             counter = counter + 1
-            if counter == 1:
-                aux = numpy.array(line['week'])
-            else:
-                aux = aux + numpy.array(line['week'])
-
-        print aux
+            aux = aux + numpy.array(line['week'])
         result = numpy.ndarray.tolist(aux)
-        print result
 
         if counter == 0:
-            return json.dumps({"response":"Error", "desc": "No results o_O, check DB!!!"})
+            return make_error(404, "No results o_O, check DB!!!")
         else:
             return jsonify({"week": result})
