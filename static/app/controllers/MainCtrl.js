@@ -65,18 +65,31 @@ angular.module('dofitarioApp')
 
   ctrl.saveTable = function(user, slots){
     slots = slots || _slots
-    console.log(ApiFactory)
-    ApiFactory.putTimetable(user, slots).then(function(data){
-      if(data.data.response === "Error"){
-
-      }
-      else{
+    ApiFactory.putTimetable(user, slots)
+    .then(function(data){
         console.log(data)
         ctrl.newUser = ''
         ctrl.generateUserList()
         ctrl.loadGenTable()
-      }
+    })
+    .catch(function(data){
+      console.log(data)
+      alert(data.data.message)
     });
+  };
+
+  ctrl.createUser = function(){
+    ApiFactory.createNewUser(ctrl.newUser)
+    .then(function(data){
+      console.log(data)
+      ctrl.newUser = ''
+      ctrl.generateUserList()
+      ctrl.loadGenTable()
+    })
+    .catch(function(data){
+      console.log(data)
+      alert(data.data.message)
+    })
   };
 
 
@@ -99,13 +112,12 @@ angular.module('dofitarioApp')
   ctrl.loadGenTable = function(){
     console.log(ApiFactory)
     ApiFactory.getGenTimetable().then(function(data){
-      if(data.data.response === "Error"){
-
-      }
-      else{
-        console.log(data)
-        ctrl.slots2 = data.data.week;
-      }
+      console.log(data)
+      ctrl.slots2 = data.data.week;
+    })
+    .catch(function(data){
+      alert(data.data.message)
+      ctrl.slots2 = _slots
     });
   };
 
