@@ -1,12 +1,12 @@
 # Dof Playground!
 
-Copia del dofitario para que cualquier miembro de dofitos añada lo que desee de cualquier tema.
+Web Dofitos.
 
 ## INSTALL
 Install pip
 ```bash
     sudo apt-get install python-pip python-dev build-essential
-sudo pip install --upgrade pip
+    sudo pip install --upgrade pip
 ```
 
 Install Node.js and MongoDB on your system. For Linux machines it'd be something like this:
