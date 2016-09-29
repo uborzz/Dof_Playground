@@ -45,6 +45,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         templateUrl: 'app/dofitario.html'
     });
 
+    $stateProvider.state('dofilock', {
+        url:'/app/dofilock',
+        //controller:'AppCtrl as appCtrl',
+        templateUrl: 'app/datashow.html'
+    });
+
     $stateProvider.state('403', {
         url:'/403',
         template: '<h1>Not authorized</h1>'
