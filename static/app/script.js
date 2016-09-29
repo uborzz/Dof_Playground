@@ -48,7 +48,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     $stateProvider.state('dofilock', {
         url:'/app/dofilock',
         //controller:'AppCtrl as appCtrl',
-        templateUrl: 'app/datashow.html'
+        templateUrl: 'app/dofilock.html'
     });
 
     $stateProvider.state('403', {
